@@ -1,0 +1,4 @@
+
+#Ignored PyCharm & virtual environment files.
+.idea/
+venv/
