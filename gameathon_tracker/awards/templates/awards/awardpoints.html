@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Award Points{% endblock %}
+
+{% block content %}
+    <h1>This is where we will award points.</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button>Add Points to Gameboard</button>
+    </form>
+{% endblock %}

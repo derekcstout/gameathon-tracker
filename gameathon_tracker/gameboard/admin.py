@@ -1,3 +1,5 @@
 from django.contrib import admin
+from .models import Gameboard, PlayerGameboard
 
-# Register your models here.
+admin.site.register(Gameboard)
+admin.site.register(PlayerGameboard)
