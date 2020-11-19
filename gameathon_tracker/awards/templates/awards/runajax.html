@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title %}Test{% endblock %}
+
+{% block content %}
+    <option value="">Select Gameboard</option>
+    <option value="{{gameboard_option.gameboard_id}}">{{gameboard_option.gameboard_id}}(Gameboard)</option>
+    <option value="{{gameboard_option.player_id}}">{{gameboard_option.player_id}}(Player)</option>
+
+{% endblock %}

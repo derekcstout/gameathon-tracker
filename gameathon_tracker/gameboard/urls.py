@@ -1,7 +1,7 @@
 from django.urls import path
 
 from . import views
-from .views import GameboardSearchResults, GameboardSearch
+from .views import GameboardSearchResults, GameboardSearch, JoinGameboard
 
 urlpatterns = [
     path('', views.index, name='index'),
@@ -10,4 +10,5 @@ urlpatterns = [
     path('gameboard/new/', views.NewGameboard.as_view(), name='newgameboard'),
     path('gameboard/search/results/', GameboardSearchResults.as_view(), name='search_results'),
     path('gameboard/search/', GameboardSearch.as_view(), name='search'),
+    path('gameboard/joingame/', JoinGameboard, name='join_gameboard')
 ]

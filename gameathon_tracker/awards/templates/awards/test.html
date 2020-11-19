@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Test{% endblock %}
+
+{% block content %}
+<h2>Points Form</h2>
+
+ <!-- Default form contact -->
+    <form method="post" class="text-center border border-light p-5" action="#!">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <p class="h4 mb-4">Award Points</p>
+
+        <!-- Gameboard -->
+        <label for="{{ form.gameboard.id_for_label }}">Gameboard</label>
+        {{ form.gameboard }}
+
+
+        <!-- Player -->
+        <label for="{{ form.player.id_for_label }}">Player</label>
+        {{ form.player }}
+
+        <div class="form-row mb-4">
+            <div class="col">
+                <!-- Place -->
+                {{ form.position }}
+            </div>
+            <div class="col">
+                <!-- Points -->
+                {{ form.points_awarded }}
+            </div>
+            <div class="col">
+                <!-- Last name -->
+                <label>Team Game</label>
+               {{ form.team_game }}
+            </div>
+        </div>
+
+        <!-- Name -->
+        {{ form.game_name }}
+
+
+        <!-- Send button -->
+        <button class="btn btn-info btn-block" type="submit">Send</button>
+
+    </form>
+<!-- Default form contact -->
+
+{% endblock %}
