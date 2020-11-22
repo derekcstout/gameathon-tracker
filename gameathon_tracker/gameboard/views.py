@@ -1,11 +1,12 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.views.generic import CreateView, FormView, ListView, TemplateView
 from django.urls import reverse_lazy, reverse
-from .models import Gameboard
+from .models import Gameboard, PlayerGameboard
 from .forms import GameboardForm, SearchGameboard
 from django.contrib.auth.decorators import login_required
-from django.db.models import Q
+from django.db.models import Q, Sum
+from awards.models import Award
 
 
 # Create your views here.
@@ -21,7 +22,11 @@ def gameboard(request):
 
 
 def standings(request):
-    return render(request, "standings/standings.html")
+    totals = PlayerGameboard.objects.annotate(points_sum=Sum('award__points_awarded'))
+    context = {
+       'totals': totals,
+    }
+    return render(request, "standings/standings.html", context)
 
 
 class NewGameboard(CreateView):

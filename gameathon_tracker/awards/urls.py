@@ -1,9 +1,9 @@
 from django.urls import path
-from .views import AddPointsView, runajax, test
+from .views import AddPointsView, load_players, test
 
 
 urlpatterns = [
     path('', AddPointsView.as_view(), name='awards'),
-    path('test/runajax/', runajax, name='runajax'),
+    path('test/load_players/', load_players, name='load_players'),
     path('test/', test, name='test'),
 ]

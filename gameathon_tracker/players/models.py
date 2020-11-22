@@ -1,3 +1,13 @@
 from django.db import models
+from django.contrib.auth.models import User
+from gameboard.models import GamePiece
 
-# Create your models here.
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE),
+    profile_pic = models.ImageField(null=True, blank=True, upload_to='img/profile/')
+    profile_game_piece = models.ForeignKey(GamePiece, null=True, blank=True, on_delete=models.SET_NULL)
+
+    def __str__(self):
+        return str(self.user)
+

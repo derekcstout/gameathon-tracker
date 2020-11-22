@@ -17,7 +17,7 @@ class AwardPointsForm(forms.ModelForm):
 
 
 class TestAwardForm(forms.Form):
-    gameboard = forms.ModelChoiceField(queryset=Gameboard.objects.all(), label='Gameboard')
+    gameboard = forms.ModelChoiceField(queryset=Gameboard.objects.none(), label='Gameboard')
     player = forms.ModelChoiceField(queryset=User.objects.all(), label='Player')
     game_name = forms.CharField(label='Game Name', max_length=200)
     position = forms.IntegerField(label='Place')
@@ -26,4 +26,6 @@ class TestAwardForm(forms.Form):
 
     def __init__(self, user, *args, **kwargs):
         super(TestAwardForm, self).__init__(*args, **kwargs)
-        self.fields['gameboard'] = forms.ModelChoiceField(queryset=PlayerGameboard.objects.filter(player_id=user))
+        self.fields['gameboard'] = forms.ModelChoiceField(queryset=Gameboard.objects.filter(gameboard_players=user))
+
+

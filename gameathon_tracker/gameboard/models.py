@@ -20,3 +20,11 @@ class PlayerGameboard(models.Model):
 
     def __str__(self):
         return self.gameboard_id.gameboard_name + " - " + str(self.player_id) + " - " + str(self.id)
+
+
+class GamePiece(models.Model):
+    piece_name = models.CharField(max_length=200)
+    piece_pic = models.ImageField(upload_to='image/pieces/')
+
+    def __str__(self):
+        return str(self.piece_name)
