@@ -1,0 +1,6 @@
+{% for total in totals %}
+    <div class="animate_me">
+        <img src="{{total.player_id.profile.profile_game_piece.piece_pic.url}}" class="gamePiece" width=10%>
+        <p>{{total.player_id.username}}</p>
+    </div>
+{% endfor %}

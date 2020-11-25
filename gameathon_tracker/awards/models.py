@@ -2,7 +2,7 @@ from django.db import models
 from django.urls import reverse
 
 class Award(models.Model):
-    player_gameboard_id = models.ForeignKey('gameboard.PlayerGameboard', on_delete=models.CASCADE)
+    player_gameboard_id = models.ForeignKey('gameboard.PlayerGameboard', on_delete=models.CASCADE, related_name='player_gameboard')
     game_name = models.CharField(max_length=200)
     position = models.IntegerField()
     team_game = models.BooleanField()

@@ -1,25 +1,62 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block title %}Standings{% endblock %}
 
-{% block content %}
-<div class="container">
-    <div class="row text-center">
-    {% for total in totals %}
-        <div class = "col-lg-4 col-md-6 mb-4">
-              <div class="card" style="width: 20rem;">
-              <img class="card-img-top img-circle rounded-circle" src="https://dummyimage.com/100x100/000/fff" alt="Card image cap" style="width: 100px">
-              <div class="card-block">
-                <h4 class="card-title">Mirion Jones</h4>
-                <p class="card-position">CEO Founder</p>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </div>
-            </div>
+{% block style %}
 
-        </div>
-    {% endfor %}
+
+{% endblock %}
+
+{% block content %}
+<div class="text-center" id="gameboardSelect">
+    <form id="gameSelect" data-scores-url="{% url 'load_scores' %}">
+        <select id="id_gameboard" class="browser-default custom-select">
+            {% for gameboard in gameboards %}
+            <option class="" value="{{gameboard.id}}">{{gameboard.gameboard_name}}</option>
+            {% endfor %}
+        </select>
+    </form>
+</div>
+
+<div class="container">
+    <div class="row text-center" id="scoreCards">
+
     </div>
 </div>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+        const url = $("#gameSelect").attr("data-scores-url");
+        const gameboardId = $("option:first").val()
+
+            $.ajax({
+                url:url,
+                data: {
+                    'gameboard_id': gameboardId
+                },
+                success: function(data) {
+                    console.log(data);
+                    $("#scoreCards").html(data);
+                }
+            });
+    });
+
+    $("#id_gameboard").change(function() {
+        const url = $("#gameSelect").attr("data-scores-url");
+        const gameboardId = $(this).val()
+
+        $.ajax({
+            url:url,
+            data: {
+                'gameboard_id': gameboardId
+            },
+            success: function(data) {
+                console.log(data);
+                $("#scoreCards").html(data);
+            }
+        });
+    });
+
+</script>
 
 {% endblock %}

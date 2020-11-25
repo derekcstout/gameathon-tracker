@@ -1,9 +1,8 @@
 from django.urls import path
-from .views import AddPointsView, load_players, test
+from .views import load_players, award_points
 
 
 urlpatterns = [
-    path('', AddPointsView.as_view(), name='awards'),
-    path('test/load_players/', load_players, name='load_players'),
-    path('test/', test, name='test'),
+    path('', award_points, name='awards'),
+    path('load_players/', load_players, name='load_players'),
 ]

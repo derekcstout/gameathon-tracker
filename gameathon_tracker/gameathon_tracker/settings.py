@@ -25,7 +25,7 @@ SECRET_KEY = 'c2(*bb07p9k_dh78k$-m7em02ee1ak$8)j-#eit$t2b2zl7x*v'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.0.40', 'localhost']
 
 
 # Application definition
@@ -106,7 +106,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
+AUTH_PROFILE_MODULE = 'players.Profile'
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
@@ -126,6 +126,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
+
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 

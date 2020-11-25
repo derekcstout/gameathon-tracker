@@ -5,17 +5,18 @@
 {% block content %}
 
 
+<br/>
+<h1 class="text-center">Edit Profile</h1>
+<br/><br/>
+
+<div class="container">
+    <form class="text-center" style="color: #757575;" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
         <br/>
-        <h1 class="text-center">Edit Profile</h1>
-        <br/><br/>
+        <button type="submit" class="btn btn-info btn-block my-4 blue-gradient">Save Profile</button>
 
-            <form class="text-center" style="color: #757575;" method="POST">
-                {% csrf_token %}
-                {{ form }}
-                <br/>
-                <button type="submit" class="btn btn-info btn-block my-4 blue-gradient">Save Profile</button>
-
-            </form>
-
+    </form>
+</div>
 
 {% endblock %}

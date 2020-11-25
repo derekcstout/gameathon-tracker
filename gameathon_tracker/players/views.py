@@ -1,10 +1,8 @@
-from django.shortcuts import render, redirect
+#from django.shortcuts import render, redirect
 from django.views.generic import CreateView, UpdateView
 from django.urls import reverse_lazy
-from .forms import UserRegisterForm
-from django.contrib.auth.forms import UserChangeForm
-from django.http import HttpResponse
-from django.contrib.auth import authenticate
+from .forms import UserRegisterForm, EditProfileForm, PasswordChangingForm
+from django.contrib.auth.views import PasswordChangeView
 
 
 class UserRegisterView(CreateView):
@@ -14,10 +12,15 @@ class UserRegisterView(CreateView):
 
 
 class UserEditView(UpdateView):
-    form_class = UserChangeForm
+    form_class = EditProfileForm
     template_name = 'registration/edit_profile.html'
     success_url = reverse_lazy('gameboard')
 
     def get_object(self):
         return self.request.user
+
+
+class PasswordsChangeView(PasswordChangeView):
+    form_class = PasswordChangingForm
+    success_url = reverse_lazy('gameboard')
 

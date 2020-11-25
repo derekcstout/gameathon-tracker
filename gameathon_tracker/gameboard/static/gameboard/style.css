@@ -1,0 +1,32 @@
+.card-img-top {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  margin-left: -30px;
+  width: 60px !important;
+  height: 60px;
+}
+
+.card-img-top-2{
+    position: absolute ;
+    top: -50px ;
+    left: 50% ;
+    margin-left: -48px ;
+    width: 100px ;
+    height: 100px ;
+}
+
+.card {
+    margin-top: 100px !important;
+    padding-top: 50px !important;
+}
+
+.card-block{
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.gameboard{
+    width: 95%;
+}
+

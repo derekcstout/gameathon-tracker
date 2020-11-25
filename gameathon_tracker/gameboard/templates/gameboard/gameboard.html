@@ -1,8 +1,75 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}GameBoard{% endblock %}
 
+{% block style %}
+
+    .thisIsGameboard{
+        width: 95%;
+        position: relative;
+        top: 0;
+        left: 0;
+
+}
+    .gamePiece{
+        width: 10%;
+        position: absolute;
+        top: 110px;
+        left: 50px;
+
+}
+
+{% endblock %}
+
 {% block content %}
-    <h1>This is where the gameboard is going to go!</h1>
-    <p>We will see if I can pull this off.</p>
+    <div class="text-center">
+        <form id="gameSelect" data-scores-url="{% url 'load_pieces' %}">
+            <select id="id_gameboard" class="browser-default custom-select">
+                {% for gameboard in gameboards %}
+                <option value="{{gameboard.id}}">{{gameboard.gameboard_name}}</option>
+                {% endfor %}
+            </select>
+        </form>
+    </div>
+    <div class="text-center">
+        <img src="{% static 'images/Christmas-Board.png' %}" class="thisIsGameboard" width=95%>
+        <p>This is a label</p>
+    </div>
+    <div id="pieces">
+
+    </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+        const url = $("#gameSelect").attr("data-scores-url");
+        const gameboardId = $("option:first").val()
+
+            $.ajax({
+                url:url,
+                data: {
+                    'gameboard_id': gameboardId
+                },
+                success: function(data) {
+                    console.log(data);
+                    $("#pieces").html(data);
+                }
+            });
+    });
+    $("#id_gameboard").change(function() {
+        const url = $("#gameSelect").attr("data-scores-url");
+        const gameboardId = $(this).val()
+
+        $.ajax({
+            url:url,
+            data: {
+                'gameboard_id': gameboardId
+            },
+            success: function(data) {
+                console.log(data);
+                $("#pieces").html(data);
+            }
+        });
+    });
+</script>
 {% endblock %}
